@@ -35,10 +35,9 @@ const CommentForm = ({postId}: { postId: string }) => {
 
   return (
     <div>
-        <h3>Leave a comment </h3>
         <fetcher.Form method="post" action={`/posts/${postId}/comments`}>
         <div>
-            <textarea name="body" id="body" required></textarea>
+            <textarea name="body" id="body" placeholder="Leave a comment" required></textarea>
         </div>
         <div>
             <button type="submit">Post comment</button>

@@ -2,6 +2,7 @@ import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/Vote";
+import CommentComponent from "../components/Comment";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { id } = args.params;
@@ -23,10 +24,10 @@ const ShowPost = () => {
   // const commentsFetcher = useFetcher({ key: 'comment-form-' + post._id});
 
   return (
-    <>
-      <div>
+    <div className="flex flex-col items-center p-8">
+      <div className="flex flex-row">
         <VoteComponent post={post} /> 
-        <div>
+        <div className="pl-11">
           { post.link ? (
             <Link to={post.link}>
               <h2>{post.title}<span>({post.link})</span></h2>
@@ -42,9 +43,11 @@ const ShowPost = () => {
           )}
         </div>
       </div>
+      <div className="p-11">
       <CommentForm postId={post._id} /> 
-      { post.comments?.map(comment => <p key={comment._id}>{comment.body} - {comment.author.userName}</p>) }
-    </>
+      { post.comments?.map(comment => <CommentComponent key={comment._id} comment={comment} />) }
+      </div>
+    </div>
   );
 }
 

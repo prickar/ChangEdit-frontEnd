@@ -6,11 +6,11 @@ export const Header = () => {
     const fetcher = useFetcher(); 
 
   return (
-    <>
+    <div className="flex justify-between p-8 border-double border-b-4 border-gray-400">
     <Link to="/">
-    <h1 className="text-center font-bold text-4xl">ChangEdit</h1>
+    <h1 className="text-3xl font-extrabold">ChangEdit</h1>
     </Link>
-    <div className="flex justify-center gap-8">
+    <div>
 
         { isAuthenticated ?
         <>
@@ -33,7 +33,7 @@ export const Header = () => {
         }
 
     </div>
-    </>
+    </div>
   )
 }
 

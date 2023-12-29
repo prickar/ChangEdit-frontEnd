@@ -5,8 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        mukta: ['Mukta', 'sans-serif'], 
+      },
+    },
   },
   plugins: [],
 }
-

@@ -1,6 +1,9 @@
 import { ActionFunctionArgs, Form, redirect, useLocation } from "react-router-dom";
 import { Post } from "../types";
 import auth from "../lib/auth";
+import { ThumbsDown, ThumbsUp } from 'lucide-react';
+
+
 
 export const action = async (args: ActionFunctionArgs) => {
     const { postId } = args.params; 
@@ -32,13 +35,17 @@ const VoteComponent = ({post}: {post: Post}) => {
         <Form method="post" action={`/posts/${post._id}/vote`}>
             <input type="hidden" name="returnTo" value={location.pathname + location.search} /> 
             <input type="hidden" value="up" name="vote" /> 
-            <button>△</button>
+            <button>
+                <ThumbsUp />
+            </button>
         </Form>
         <span>{post.score}</span>
         <Form method="post" action={`/posts/${post._id}/vote`}>
             <input type="hidden" name="returnTo" value={location.pathname + location.search} /> 
             <input type="hidden" value="down" name="vote" /> 
-            <button type="submit">▽</button>
+            <button type="submit">
+                <ThumbsDown />
+            </button>
         </Form>
     </div>
 
