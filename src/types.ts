@@ -21,3 +21,5 @@ export interface Post {
     comments?: Comment[];
     score: number;
 }
+
+

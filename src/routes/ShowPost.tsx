@@ -3,6 +3,7 @@ import { Post } from "../types";
 import CommentForm from "../components/CommentForm";
 import VoteComponent from "../components/Vote";
 import CommentComponent from "../components/Comment";
+import DeleteComments from "../components/DeleteComments";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   const { id } = args.params;
@@ -21,10 +22,9 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 const ShowPost = () => {
   const post = useLoaderData() as Post;
-  // const commentsFetcher = useFetcher({ key: 'comment-form-' + post._id});
 
   return (
-    <div className="flex flex-col items-center p-8">
+    <div className="flex flex-col p-8">
       <div className="flex flex-row">
         <VoteComponent post={post} /> 
         <div className="pl-11">
@@ -45,7 +45,10 @@ const ShowPost = () => {
       </div>
       <div className="p-11">
       <CommentForm postId={post._id} /> 
-      { post.comments?.map(comment => <CommentComponent key={comment._id} comment={comment} />) }
+      { post.comments?.map(comment => <>
+       <CommentComponent key={comment._id} comment={comment} /> 
+       <DeleteComments post={post} comment={comment} /> </>
+            ) }
       </div>
     </div>
   );

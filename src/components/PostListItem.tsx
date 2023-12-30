@@ -4,7 +4,7 @@ import VoteComponent from './Vote';
 
 const PostListItem = ({ post }: { post: Post }) => {
   return (
-    <div className='flex flex-row justify-center p-4'>
+    <div className='flex flex-row p-4'>
         <VoteComponent post={post} />
       <div className='p-4'>
         { post.link ? (
@@ -13,10 +13,10 @@ const PostListItem = ({ post }: { post: Post }) => {
           </Link>
         ) : (
           <Link to={`/posts/${post._id}`}>
-            <h2>{post.title}</h2>
+            <h2 className='font-semibold text-l'>{post.title}</h2>
           </Link>
         )}
-        <p>by {post.author.userName}</p>
+        <p className='text-xs'>by {post.author.userName}</p>
         { post.link && (
           <span><Link to={`/posts/${post._id}`}>Show post</Link></span>
         )}
