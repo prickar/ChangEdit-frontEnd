@@ -16,6 +16,7 @@ import SignIn, { action as signInAction } from './routes/SignIn.tsx'
 import { action as createCommentAction } from './components/CommentForm.tsx'
 import { action as voteAction } from './components/Vote.tsx'
 import { action as deleteCommentsAction } from './components/DeleteComments.tsx'
+import { action as deletePostAction } from './components/DeletePost.tsx'
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
 						path: "/posts/:postId/comments/:commentId/delete-comment",
 						action: deleteCommentsAction,
 					},
+          {
+            path: "/posts/:postId/delete-post",
+						action: deletePostAction
+          },
         ]
       },
     ]
