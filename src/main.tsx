@@ -17,11 +17,11 @@ import { action as createCommentAction } from './components/CommentForm.tsx'
 import { action as voteAction } from './components/Vote.tsx'
 import { action as deleteCommentsAction } from './components/DeleteComments.tsx'
 import { action as deletePostAction } from './components/DeletePost.tsx'
-
+import UpdatePost, { action as updatePostAction } from './routes/UpdatePost.tsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -30,24 +30,24 @@ const router = createBrowserRouter([
         element: <Index />
       },
       {
-        path: "/posts/:id",
+        path: '/posts/:id',
         loader: showPostLoader,
         element: <ShowPost />
       },
       {
-        path: "sign-in",
+        path: 'sign-in',
         action: signInAction,
         element: <SignIn />
       },
       {
-        path: "sign-up",
+        path: 'sign-up',
         action: signUpAction,
         element: <SignUp />
       },
       {
-        path: "sign-out",
+        path: 'sign-out',
         action: () => {
-          auth.signOut();
+          auth.signOut()
           return redirect('/')
         }
       },
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <RequireAuth />,
         children: [
           {
-            path: "create-post",
+            path: 'create-post',
             action: createPostAction,
             element: <CreatePost />
           },
@@ -64,19 +64,24 @@ const router = createBrowserRouter([
             action: createCommentAction
           },
           {
+            path: '/posts/:id/update',
+            action: updatePostAction,
+            element: <UpdatePost />
+          },
+          {
             path: '/posts/:postId/vote',
             action: voteAction
           },
-					{
-						path: "/posts/:postId/comments/:commentId/delete-comment",
-						action: deleteCommentsAction,
-					},
           {
-            path: "/posts/:postId/delete-post",
-						action: deletePostAction
+            path: '/posts/:postId/comments/:commentId/delete-comment',
+            action: deleteCommentsAction
           },
+          {
+            path: '/posts/:postId/delete-post',
+            action: deletePostAction
+          }
         ]
-      },
+      }
     ]
   }
 ])
@@ -84,5 +89,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 )

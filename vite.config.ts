@@ -1,7 +1,16 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import vitePrettier from 'vite-plugin-prettier'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  // Other configurations...
+  plugins: [
+    vitePrettier({
+      semi: false,
+      singleQuote: true,
+      tabWidth: 2,
+      trailingComma: 'none',
+      printWidth: 80
+      // Other Prettier options...
+    })
+  ]
 })
